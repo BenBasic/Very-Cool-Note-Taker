@@ -1,6 +1,26 @@
 const express = require("express");
 const app = express();
+const fs = require("fs")
+const path = require("path")
 
 const PORT = process.env.PORT || 3001;
 
+app.use(express.json())
+app.use(express.urlencoded({
+    extended:true
+}))
+express.use(express.static("public"))
 
+app.get("/notes", function(request, response) {
+    response.sendFile(path.join(__dirname,".public/notes.html"))
+})
+
+app.get("/api/notes", function(request, response) {
+    response.sendFile(path.join(__dirname,"./db/db.json"))
+})
+
+app.post("/api/notes", function(request, response) {
+    const addNote = request.body;
+    addNote.id = Date.now();
+    
+})
