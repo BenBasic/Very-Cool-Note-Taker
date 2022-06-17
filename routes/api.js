@@ -15,12 +15,14 @@ module.exports = function(app) {
     
     app.post("/api/notes", function(request, response) {
         const addNote = request.body;
+        console.log("addNote is: " + addNote);
         addNote.id = Date.now();
         console.log("note id is: " + addNote.id);
         const data = fs.readFileSync("./db/db.json", "utf8");
         console.log("data is: " + data);
         const jsonData = JSON.parse(data);
         console.log("jsonData is: " + jsonData);
+        jsonData.push(addNote);
         fs.writeFileSync("./db/db.json", JSON.stringify(jsonData));
         response.send();
         console.log("api post 1 working");
