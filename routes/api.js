@@ -4,11 +4,11 @@ const path = require("path");
 module.exports = function(app) {
 
     app.get("/notes", function(request, response) {
-        response.sendFile(path.join(__dirname,"./public/notes.html"))
+        response.sendFile(path.join(__dirname,"../public/notes.html"))
     })
     
     app.get("/api/notes", function(request, response) {
-        response.sendFile(path.join(__dirname,"./db/db.json"))
+        response.sendFile(path.join(__dirname,"../db/db.json"))
     })
     
     app.post("/api/notes", function(request, response) {
