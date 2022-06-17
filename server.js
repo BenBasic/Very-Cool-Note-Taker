@@ -30,3 +30,7 @@ app.post("/api/notes", function(request, response) {
 
 require("./routes/api.js")(app);
 require("./routes/html.js")(app);
+
+app.listen(PORT, function() {
+    console.log("Listening to port: " + PORT);
+})
