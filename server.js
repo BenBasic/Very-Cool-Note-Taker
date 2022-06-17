@@ -22,5 +22,11 @@ app.get("/api/notes", function(request, response) {
 app.post("/api/notes", function(request, response) {
     const addNote = request.body;
     addNote.id = Date.now();
-    
-})
+    const data = fs.readFileSync("./db/db.json");
+    const jsonData = JSON.parse(data);
+    fs.writeFileSync("./db/db.json", JSON.stringify(jsonData));
+    response.send();
+});
+
+require("./routes/api.js")(app);
+require("./routes/html.js")(app);
